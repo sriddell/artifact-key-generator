@@ -5,6 +5,9 @@
 *.so
 *.dylib
 
+*.json
+*.war
+artifact-tracking
 # Test binary, built with `go test -c`
 *.test
 
