@@ -15,7 +15,8 @@ limitations under the License.
 */
 package main
 
-import "github.com/sriddell/artifact-tracking/cmd"
+import "github.com/sriddell/artifact-tracker/cmd"
+
 func main() {
 	cmd.Execute()
 }

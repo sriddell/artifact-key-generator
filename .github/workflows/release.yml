@@ -63,7 +63,7 @@ jobs:
       - name: Upload assets
         uses: actions/upload-artifact@v4
         with:
-          name: artifact-key-generator
+          name: artifact-tracker
           path: dist/*
       - name: Publish release
         uses: softprops/action-gh-release@v2

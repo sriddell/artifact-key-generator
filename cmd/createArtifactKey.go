@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/sriddell/artifact-tracking/internal/support"
+	"github.com/sriddell/artifact-tracker/internal/support"
 
 	"github.com/spf13/cobra"
 )

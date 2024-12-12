@@ -36,7 +36,7 @@ func GenerateKey(filename string) (string, error) {
 }
 
 func GetSSMParameter(parameterName string) (string, error) {
-	cfg, err := config.LoadDefaultConfig(context.TODO())
+	cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion("us-east-1"))
 	if err != nil {
 		return "", err
 	}

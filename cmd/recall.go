@@ -13,7 +13,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/sriddell/artifact-tracking/internal/support"
+	"github.com/sriddell/artifact-tracker/internal/support"
 )
 
 // recallCmd represents the recall command

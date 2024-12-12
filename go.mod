@@ -1,4 +1,4 @@
-module github.com/sriddell/artifact-tracking
+module github.com/sriddell/artifact-tracker
 
 go 1.22.9
 

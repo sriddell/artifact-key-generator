@@ -7,7 +7,7 @@
 
 *.json
 *.war
-artifact-tracking
+artifact-tracker
 # Test binary, built with `go test -c`
 *.test
 
