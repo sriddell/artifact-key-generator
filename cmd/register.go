@@ -19,6 +19,7 @@ var registerCmd = &cobra.Command{
 	Short: "Registers the specified artifact's metadata",
 	Long: `Computes a unique hash key for the specified artifact and 
 	       registers the metadata with the Artifact Metadata Service.`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKeyName, err := cmd.Flags().GetString("api-key-name")
 		if err != nil {
