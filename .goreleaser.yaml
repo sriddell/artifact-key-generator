@@ -8,12 +8,15 @@
 
 version: 2
 
+release:
+  disable: true
+
 before:
   hooks:
     # You may remove this if you don't use go modules.
     - go mod tidy
     # you may remove this if you don't need go generate
-    # - go generate ./...
+    - go generate ./...
 
 builds:
   - env:
@@ -44,3 +47,19 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+publishers:
+  - name: artifactory
+    cmd: >-
+      curl -k 
+        -X POST
+        -H "Accept: application/json"
+        -H "Content-Type: multipart/form-data"
+        -H "X-JFrog-Art-Api: ENV.ARTIFACTORY_API_KEY"
+        "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/{{ .ProjectName }}/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
+        -F "raw.directory={{ tolower .Env.PROJECT_KEY }}/{{ tolower .ProjectName }}/{{ .Version }}"
+        -F "raw.asset1=@{{ .ArtifactName }};type=application/gzip"
+        -F "raw.asset1.filename={{ .ArtifactName }}"
+
+
+  
