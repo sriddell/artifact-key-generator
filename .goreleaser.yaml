@@ -51,5 +51,6 @@ changelog:
 publishers:
   - name: artifactory
     cmd: >-
+      echo "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testings/artifact-trackers/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}/{{ .ArtifactName }}"
       curl -H "X-JFrog-Art-Api: ENV.ARTIFACTORY_API_KEY" \
       "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testings/artifact-trackers/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}/{{ .ArtifactName }}"
