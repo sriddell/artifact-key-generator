@@ -56,10 +56,7 @@ publishers:
         -H "Accept: application/json"
         -H "Content-Type: multipart/form-data"
         -H "X-JFrog-Art-Api: ENV.ARTIFACTORY_API_KEY"
-        "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/{{ .ProjectName }}/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
+        "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/artfitact-tracker/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
         -F "raw.directory={{ tolower .Env.PROJECT_KEY }}/{{ tolower .ProjectName }}/{{ .Version }}"
         -F "raw.asset1=@{{ .ArtifactName }};type=application/gzip"
         -F "raw.asset1.filename={{ .ArtifactName }}"
-
-
-  
