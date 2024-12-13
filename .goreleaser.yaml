@@ -51,6 +51,7 @@ changelog:
 publishers:
   - name: Artifactory
     cmd: |
+      #!/bin/bash
       for file in dist/*; do
         curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $file "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testins/$(basename $file)"
       done
