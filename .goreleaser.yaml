@@ -52,5 +52,4 @@ publishers:
   - name: artifactory
     cmd: >-
       curl -H "X-JFrog-Art-Api: ENV.ARTIFACTORY_API_KEY" \
-      -T "{{ .ArtifactName }}ca" \
       "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testings/artifact-trackers/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}/{{ .ArtifactName }}"
