@@ -54,6 +54,6 @@ uploads:
     checksum_header: -X-SHA256-Sum
     custom_headers:
       X-JFrog-Art-Api: "{{ .Env.JFROG_API_KEY }}"
-    target: "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/{{ .ProjectName }}/{{ .Version }}/{{ .Os }}/{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
+    target: "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/{ .ProjectName }}/{{ .Version }}/"
 
 
