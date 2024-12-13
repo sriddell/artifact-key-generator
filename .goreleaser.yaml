@@ -49,7 +49,10 @@ changelog:
       - "^test:"
 
 publishers:
-  - name: artifactory
-    cmd: >-
-      curl -H \"X-JFrog-Art-Api: ENV.ARTIFACTORY_API_KEY\" \
-      \"https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testings/artifact-trackers/{{ .Version }}/{{ .Os }}/{{ .Arch }}/{{ .ArtifactName }}\"
+  - name: Artifactory
+    cmd: |
+      for file in dist/*; do
+        curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $file "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testins/$(basename $file)"
+      done
+
+
