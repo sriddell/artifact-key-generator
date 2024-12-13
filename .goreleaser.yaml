@@ -7,7 +7,9 @@
 # vim: set ts=2 sw=2 tw=0 fo=cnqoj
 
 version: 2
+project_name: artifact-tracker
 
+# no vcs deploys
 release:
   disable: true
 
@@ -48,10 +50,11 @@ changelog:
       - "^docs:"
       - "^test:"
 
+# publish to artifactory    
 uploads:
   - name: production
     custom_headers:
       X-JFrog-Art-Api: "{{ .Env.JFROG_API_KEY }}"
-    target: "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/artifact-tracker/{{ .Version }}/"
+    target: "https://artifactory.devops.ellucian.com/artifactory/shane-scoped/testing/{ .ProjectName }}/{{ .Version }}/"
 
 
