@@ -9,7 +9,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/sriddell/artifact-tracker/internal/support"
