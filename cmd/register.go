@@ -50,7 +50,8 @@ var registerCmd = &cobra.Command{
 		if err := gz.Close(); err != nil {
 			log.Fatal("Error closing gzip writer:", err)
 		}
-		req, err := http.NewRequest("POST", "https://artifact-metadata-service.devsecops.devops.ellucian.com/api/v1/artifacts/"+key+"/associated-sboms", &buf)
+		reader := bytes.NewReader(buf.Bytes())
+		req, err := http.NewRequest("POST", "https://artifact-metadata-service.devsecops.devops.ellucian.com/api/v1/artifacts/"+key+"/associated-sboms", reader)
 		if err != nil {
 			log.Fatal("Error creating request for sbom content:", err)
 		}
