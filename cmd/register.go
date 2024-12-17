@@ -4,6 +4,8 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"bytes"
+	"compress/gzip"
 	"log"
 	"net/http"
 	"os"
@@ -41,13 +43,21 @@ var registerCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("Error reading sbom file:", err)
 		}
-		sbomContent := string(content)
-		reader := strings.NewReader(sbomContent)
-		req, err := http.NewRequest("POST", "https://artifact-metadata-service.devsecops.devops.ellucian.com/api/v1/artifacts/"+key+"/associated-sboms", reader)
+		var buf bytes.Buffer
+		gz := gzip.NewWriter(&buf)
+		if _, err := gz.Write(content); err != nil {
+			log.Fatal("Error compressing sbom content:", err)
+		}
+		if err := gz.Close(); err != nil {
+			log.Fatal("Error closing gzip writer:", err)
+		}
+		req, err := http.NewRequest("POST", "https://artifact-metadata-service.devsecops.devops.ellucian.com/api/v1/artifacts/"+key+"/associated-sboms", &buf)
 		if err != nil {
 			log.Fatal("Error creating request for sbom content:", err)
 		}
 		req.Header.Set("X-API-Key", apiKey)
+		req.Header.Set("Content-Type", "application/json")
+		req.Header.Set("Content-Encoding", "gzip")
 		if err != nil {
 			log.Fatal("Error posting sbom content:", err)
 		}
